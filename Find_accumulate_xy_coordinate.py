@@ -28,8 +28,8 @@ print(whole_x, whole_y, whole_angle, delta_angle)
 
 # -------------------------------------------- 2회 데이터 인입시
 # -------------------------------------------- Data update Second
-FL = 30.7 / lower_var  # 30.2 km 라면, (30.2 * 1000 / (3600) ) / 5 ==> 30.2 / 18
-FR = 30.5 / lower_var  # 30.2 km 라면, (30.3 * 1000 / (3600) ) / 5 ==> 30.3 / 18
+FL = 30.7 / lower_var  # 30.7 km 라면, (30.7 * 1000 / (3600) ) / 5 ==> 30.7 / 18
+FR = 30.5 / lower_var  # 30.5 km 라면, (30.5 * 1000 / (3600) ) / 5 ==> 30.5 / 18
 delta_angle = 90 - math.degrees(math.atan2(Tire_width, FR - FL))
 distance = (FL+FR) / 2
 whole_angle = whole_angle + delta_angle
@@ -39,8 +39,8 @@ print(whole_x, whole_y, whole_angle, delta_angle)
 
 # -------------------------------------------- 3회 데이터 인입시
 # -------------------------------------------- Data update Third
-FL = 30.1 / lower_var  # 30.2 km 라면, (30.2 * 1000 / (3600) ) / 5 ==> 30.2 / 18
-FR = 30.5 / lower_var  # 30.2 km 라면, (30.3 * 1000 / (3600) ) / 5 ==> 30.3 / 18
+FL = 30.1 / lower_var  # 30.1 km 라면, (30.1 * 1000 / (3600) ) / 5 ==> 30.1 / 18
+FR = 30.5 / lower_var  # 30.5 km 라면, (30.5 * 1000 / (3600) ) / 5 ==> 30.5 / 18
 delta_angle = 90 - math.degrees(math.atan2(Tire_width, FR - FL))
 distance = (FL+FR) / 2
 whole_angle = whole_angle + delta_angle
