@@ -5,7 +5,7 @@ from scipy.special._ufuncs import radian
 # 싼타페 DM의 윤거전 = 1628 mm = 1.628 meter
 # 윤거전 : 전륜 바퀴 2개에 대해, 각각 바퀴의 중심 위치간의 거리
 
-Tire_width = 1.628     # 싼타페 윤거전
+Tire_width = 1.628     # 싼타페 윤거전 https://auto.naver.com/car/lineup.nhn?yearsId=68095
 
 whole_x = 0         # initial_x_coordinate
 whole_y = 0         # initial_y_coordinate
