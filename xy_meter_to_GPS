@@ -1,0 +1,14 @@
+from pyproj import Proj
+
+py_orig = Proj(proj='lcc',datum='NAD83',
+            lat_1=37.000000,lat_2=37.000000,
+            lat_0=37.000000,lon_0=128.0,
+            x_0=0.0,y_0=0.0)
+
+x = [100.0]
+y = [100.0]
+lon, lat = py_orig(x, y, inverse=True)
+print(lon, lat)
+# [128.00112346143038] [37.000901076105556]
+
+# Reference : https://pypi.org/project/pyproj/
