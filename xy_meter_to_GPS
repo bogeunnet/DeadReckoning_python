@@ -1,35 +1,54 @@
 from pyproj import Proj
 
-py_orig = Proj(proj='lcc',datum='NAD83',
-            lat_1=37.000000,lon_1=128.0,
-            lat_0=37.000000,lon_0=128.0,
-            x_0=0.0,y_0=0.0)
+lat_origin = 37
+lon_origin = 128
 
-x = [-1.75]
-y = [-0.11]
-lon, lat = py_orig(x, y, inverse=True)
-print(lon, lat)
+py_orig = Proj(proj='lcc',datum='NAD83',
+            lat_1=lat_origin,lon_1=lon_origin,
+            lat_0=lat_origin,lon_0=lon_origin,
+            x_0=0.0,y_0=0.0)
+x = [100]
+y = [100]
+lon_moved, lat_moved = py_orig(x, y, inverse=True)
+print(lat_origin, lon_origin, lat_moved[0], lon_moved[0])
+
+
+
 # [128.00001966034327] [37.00000099028162]
 
 # Reference : https://pypi.org/project/pyproj/
 # Reference Site : https://www.whoi.edu/marine/ndsf/cgi-bin/NDSFutility.cgi?form=0&from=XY&to=LatLon
 
 
-p2k = Proj(proj='lcc',
-           # a=6370000.0,
-           lat_0=37,
-           lon_0=128,
-           lat_1=37,
-           lon_1=128,
-           x_0=0,
-           y_0=0)
-           # preserve_units = True)
+import math
 
-x = [1.75]
-y = [0.11]
+def haversine(lat1, lon1, lat2, lon2):
+    R = 6372800  # Earth radius in meters
 
-lon, lat = p2k(x, y, inverse=True)
-print(lon, lat)
+    phi1 = math.radians(lat1)
+    phi2 = math.radians(lat2)
+    dphi = math.radians(lat2 - lat1)
+    dlambda = math.radians(lon2 - lon1)
+
+    a = math.sin(dphi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda / 2) ** 2
+
+    return 2 * R * math.atan2(math.sqrt(a), math.sqrt(1 - a))    #, 2 * R * math.asin(math.sqrt(a), math.sqrt(1 - a))
+
+print(haversine(lat_origin, lon_origin, lat_moved[0], lon_moved[0]))
+
+# p2k = Proj(proj='lcc',
+#            # a=6370000.0,
+#            lat_0=37,lon_0=128,
+#            lat_1=37,lon_1=128,
+#            x_0=0,
+#            y_0=0)
+#            # preserve_units = True)
+#
+# x = [1.75]
+# y = [0.11]
+#
+# lon, lat = p2k(x, y, inverse=True)
+# print(lon, lat)
 # [128.00001966034327] [37.00000099118873]
 
 # I don't know why Proj function required lat and lon information twice
@@ -37,3 +56,4 @@ print(lon, lat)
 # I'll update when I find reasons.
 
 # 점 찍을때 색깔 지정하는것. BGR형태의 Color(ex; (255, 0, 0) -> Blue)
+
